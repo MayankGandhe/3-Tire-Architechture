@@ -1,5 +1,5 @@
 resource "aws_route_table" "public_route" {
-  vpc_id = "${aws_vpc.VPC.id}"
+  vpc_id = aws_vpc.VPC.id
 
   
   route {
@@ -13,7 +13,7 @@ resource "aws_route_table" "public_route" {
 }
 
 resource "aws_route_table" "private_route" {
-  vpc_id = "${aws_vpc.VPC.id}"
+  vpc_id = aws_vpc.VPC.id
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -26,7 +26,7 @@ resource "aws_route_table" "private_route" {
 }
 
 resource "aws_route_table" "data_route" {
-  vpc_id = "${aws_vpc.VPC.id}"
+  vpc_id = aws_vpc.VPC.id
 
   tags = {
     Name = "route-table-data"

@@ -7,7 +7,7 @@ terraform {
   }
 }
 variable "region"{
-  
+ description = "Region for aws"  
 }
 provider "aws" {
   profile = "default"
