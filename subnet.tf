@@ -36,18 +36,18 @@ resource "aws_subnet" "data-subnet" {
 }
 
 resource "aws_route_table_association" "public" {
-  count = length(aws_subnet.public-subnet)
-  subnet_id      = aws_subnet.public-subnet[count.index].id
+  for_each  = aws_subnet.public-subnet
+  subnet_id      = each.value.id
   route_table_id = aws_route_table.public_route.id
 } 
 resource "aws_route_table_association" "private" {
-  count = aws_subnet.private-subnet
-  subnet_id      = aws_subnet.private-subnet[count.index].id
+  for_each  = aws_subnet.private-subnet
+  subnet_id      = each.value.id
   route_table_id = aws_route_table.private_route.id
 } 
 resource "aws_route_table_association" "data" {
-  count = aws_subnet.data-subnet
-  subnet_id      = aws_subnet.data-subnet[count.index].id
+  for_each  = aws_subnet.data-subnet
+  subnet_id      = each.value.id
   route_table_id = aws_route_table.data_route.id
 } 
 
